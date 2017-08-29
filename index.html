@@ -1,15 +1,17 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <script src="script.js"></script>
   </head>
   <body ng-app="AngularTest">
-    <div ng-controller="Controller">
+    <div ng-controller="Controller" class="container">
+      <h2>Test Solved</h2>
       <label>Filter | Display only patients older than</label>
-      <input type="text" type="number" ng-model="age" placeholder="...years">
+      <input type="text" ng-model="query" placeholder="...years">
       <hr>
-      <table>
+      <table class="table">
         <thead>
         <tr>
           <th>ID</th>
@@ -19,6 +21,8 @@
         </tr>
         </thead>
         <tbody>
+          <tr list ng-repeat="patient in patients | orderBy:'-age' | filter: greaterThan('age', query)">
+          </tr>
         </tbody>
       </table>
     </div>
